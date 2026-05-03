@@ -1,0 +1,7 @@
+target_file = "candidate_pipeline.py"
+prompt_file = "prompts/candidate_prompt.md"
+eval_command = "python3 -m unittest discover -s tests"
+metric_name = "composite_score"
+metric_direction = "higher"
+time_budget = "5m"
+

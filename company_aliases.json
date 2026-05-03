@@ -1,55 +1,170 @@
 {
   "삼성전자": {
+    "country": "KR",
     "tickers": ["005930.KS"],
-    "aliases": ["삼성전자", "Samsung Electronics", "Samsung memory", "Samsung HBM", "Samsung DRAM"]
+    "korean_names": ["삼성전자", "삼성"],
+    "english_names": ["Samsung Electronics", "Samsung"],
+    "aliases": ["Samsung memory", "Samsung HBM", "Samsung DRAM", "Samsung Foundry"],
+    "business_keywords": ["HBM", "DRAM", "NAND", "파운드리", "메모리", "반도체", "첨단 패키징", "AI 반도체"]
   },
   "SK하이닉스": {
+    "country": "KR",
     "tickers": ["000660.KS"],
-    "aliases": ["SK하이닉스", "SK hynix", "SK Hynix HBM", "SK Hynix DRAM"]
+    "korean_names": ["SK하이닉스", "하이닉스"],
+    "english_names": ["SK hynix", "SK Hynix"],
+    "aliases": ["SK Hynix HBM", "SK Hynix DRAM", "Hynix memory"],
+    "business_keywords": ["HBM", "HBM4", "DRAM", "메모리", "AI 메모리", "고대역폭 메모리"]
   },
   "Micron": {
+    "country": "US",
     "tickers": ["MU"],
-    "aliases": ["Micron", "Micron Technology", "Micron HBM", "Micron DRAM"]
+    "korean_names": ["마이크론"],
+    "english_names": ["Micron", "Micron Technology"],
+    "aliases": ["Micron HBM", "Micron DRAM"],
+    "business_keywords": ["HBM", "DRAM", "NAND", "memory pricing", "AI memory"]
   },
   "Nvidia": {
+    "country": "US",
     "tickers": ["NVDA"],
-    "aliases": ["Nvidia", "NVIDIA AI accelerator", "Nvidia GPU", "Nvidia Blackwell"]
+    "korean_names": ["엔비디아"],
+    "english_names": ["Nvidia", "NVIDIA"],
+    "aliases": ["NVIDIA AI accelerator", "Nvidia GPU", "Nvidia Blackwell"],
+    "business_keywords": ["GPU", "AI accelerator", "Blackwell", "CUDA", "data center GPU"]
+  },
+  "AMD": {
+    "country": "US",
+    "tickers": ["AMD"],
+    "korean_names": ["AMD"],
+    "english_names": ["AMD", "Advanced Micro Devices"],
+    "aliases": ["AMD Instinct", "AMD AI GPU"],
+    "business_keywords": ["AI accelerator", "GPU", "MI300", "MI350", "data center"]
   },
   "Broadcom": {
+    "country": "US",
     "tickers": ["AVGO"],
-    "aliases": ["Broadcom", "Broadcom AI ASIC", "Broadcom networking"]
+    "korean_names": ["브로드컴"],
+    "english_names": ["Broadcom"],
+    "aliases": ["Broadcom AI ASIC", "Broadcom networking"],
+    "business_keywords": ["AI ASIC", "networking", "switching", "custom silicon", "VMware"]
+  },
+  "TSMC": {
+    "country": "TW",
+    "tickers": ["TSM", "2330.TW"],
+    "korean_names": ["TSMC", "대만 TSMC"],
+    "english_names": ["TSMC", "Taiwan Semiconductor"],
+    "aliases": ["Taiwan Semiconductor Manufacturing"],
+    "business_keywords": ["foundry", "advanced node", "CoWoS", "advanced packaging", "AI chip"]
+  },
+  "ASML": {
+    "country": "NL",
+    "tickers": ["ASML"],
+    "korean_names": ["ASML"],
+    "english_names": ["ASML"],
+    "aliases": ["ASML Holding", "EUV lithography"],
+    "business_keywords": ["EUV", "lithography", "semiconductor equipment", "High-NA"]
   },
   "Vertiv": {
+    "country": "US",
     "tickers": ["VRT"],
-    "aliases": ["Vertiv", "Vertiv data center cooling", "Vertiv power"]
+    "korean_names": ["버티브"],
+    "english_names": ["Vertiv"],
+    "aliases": ["Vertiv data center cooling", "Vertiv power"],
+    "business_keywords": ["liquid cooling", "UPS", "data center power", "thermal management"]
   },
   "Eaton": {
+    "country": "US",
     "tickers": ["ETN"],
-    "aliases": ["Eaton", "Eaton data center", "Eaton electrical equipment"]
+    "korean_names": ["이튼"],
+    "english_names": ["Eaton"],
+    "aliases": ["Eaton data center", "Eaton electrical equipment"],
+    "business_keywords": ["electrical equipment", "switchgear", "power management", "data center power"]
+  },
+  "Schneider Electric": {
+    "country": "FR",
+    "tickers": ["SU.PA", "SBGSY"],
+    "korean_names": ["슈나이더 일렉트릭", "슈나이더"],
+    "english_names": ["Schneider Electric"],
+    "aliases": ["Schneider data center", "Schneider power management"],
+    "business_keywords": ["power management", "data center cooling", "energy management", "grid"]
   },
   "NAVER": {
+    "country": "KR",
     "tickers": ["035420.KS"],
-    "aliases": ["네이버 실적", "NAVER earnings", "NAVER commerce", "Npay", "네이버 클라우드", "NAVER AI"]
+    "korean_names": ["네이버", "NAVER"],
+    "english_names": ["NAVER"],
+    "aliases": ["네이버 실적", "NAVER earnings", "NAVER commerce", "Npay", "네이버 클라우드", "NAVER AI"],
+    "business_keywords": ["AI 광고", "커머스", "검색광고", "클라우드", "Npay", "웹툰", "플랫폼 AI"]
+  },
+  "카카오": {
+    "country": "KR",
+    "tickers": ["035720.KS"],
+    "korean_names": ["카카오"],
+    "english_names": ["Kakao"],
+    "aliases": ["KakaoTalk", "Kakao commerce", "Kakao AI"],
+    "business_keywords": ["메신저", "광고", "커머스", "페이", "엔터테인먼트", "플랫폼 AI"]
   },
   "현대차": {
+    "country": "KR",
     "tickers": ["005380.KS", "HYMTF"],
-    "aliases": ["현대차", "Hyundai Motor", "Hyundai hybrid", "Hyundai EV"]
+    "korean_names": ["현대차", "현대자동차"],
+    "english_names": ["Hyundai Motor", "Hyundai"],
+    "aliases": ["Hyundai hybrid", "Hyundai EV", "Hyundai Ioniq"],
+    "business_keywords": ["하이브리드", "전기차", "아이오닉", "수소차", "미국 판매", "관세"]
+  },
+  "기아": {
+    "country": "KR",
+    "tickers": ["000270.KS"],
+    "korean_names": ["기아", "기아차"],
+    "english_names": ["Kia"],
+    "aliases": ["Kia hybrid", "Kia EV"],
+    "business_keywords": ["하이브리드", "전기차", "EV3", "EV5", "미국 판매", "관세"]
   },
   "Toyota": {
-    "tickers": ["TM"],
-    "aliases": ["Toyota", "Toyota hybrid", "Toyota electric vehicle"]
+    "country": "JP",
+    "tickers": ["TM", "7203.T"],
+    "korean_names": ["도요타", "토요타"],
+    "english_names": ["Toyota", "Toyota Motor"],
+    "aliases": ["Toyota hybrid", "Toyota electric vehicle"],
+    "business_keywords": ["hybrid", "EV", "Prius", "battery EV", "global auto sales"]
+  },
+  "Tesla": {
+    "country": "US",
+    "tickers": ["TSLA"],
+    "korean_names": ["테슬라"],
+    "english_names": ["Tesla"],
+    "aliases": ["Tesla EV", "Tesla energy", "Tesla FSD"],
+    "business_keywords": ["EV", "battery storage", "autonomous driving", "FSD", "Megapack"]
   },
   "BYD": {
+    "country": "CN",
     "tickers": ["1211.HK", "BYDDY"],
-    "aliases": ["BYD", "BYD battery", "BYD EV"]
+    "korean_names": ["비야디", "BYD"],
+    "english_names": ["BYD"],
+    "aliases": ["BYD battery", "BYD EV"],
+    "business_keywords": ["EV", "battery", "Blade Battery", "China auto", "plug-in hybrid"]
   },
   "CATL": {
+    "country": "CN",
     "tickers": ["300750.SZ"],
-    "aliases": ["CATL", "Contemporary Amperex", "CATL battery"]
+    "korean_names": ["CATL", "닝더스다이"],
+    "english_names": ["CATL", "Contemporary Amperex"],
+    "aliases": ["CATL battery", "Contemporary Amperex Technology"],
+    "business_keywords": ["battery cell", "LFP", "ESS", "EV battery", "China battery share"]
   },
   "LG에너지솔루션": {
+    "country": "KR",
     "tickers": ["373220.KS"],
-    "aliases": ["LG에너지솔루션", "LG Energy Solution", "LGES battery", "LGES ESS"]
+    "korean_names": ["LG에너지솔루션", "LG엔솔"],
+    "english_names": ["LG Energy Solution", "LGES"],
+    "aliases": ["LGES battery", "LGES ESS", "LG Energy Solution battery"],
+    "business_keywords": ["배터리 셀", "ESS", "전기차 배터리", "미국 ESS", "IRA", "4680"]
+  },
+  "삼성SDI": {
+    "country": "KR",
+    "tickers": ["006400.KS"],
+    "korean_names": ["삼성SDI"],
+    "english_names": ["Samsung SDI"],
+    "aliases": ["Samsung SDI battery", "Samsung SDI ESS"],
+    "business_keywords": ["배터리 셀", "ESS", "전기차 배터리", "원통형 배터리", "전고체"]
   }
 }
-

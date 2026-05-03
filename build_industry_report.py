@@ -26,6 +26,7 @@ SOURCE_WEIGHTS = {
     "newsapi_global": 1.15,
     "gdelt_doc": 1.1,
     "investing_rss": 1.05,
+    "google_news_rss_global": 1.05,
     "google_news_rss": 1.0,
     "naver_news": 0.9,
 }
@@ -41,13 +42,19 @@ class IndustryReportConfig:
     start: date = date.today()
     end: date = date.today()
     max_evidence_per_theme: int = 8
+    report_type: str = "global_equity_theme_map"
 
 
 def build_industry_report(config: IndustryReportConfig) -> str:
     themes = json.loads(config.themes_path.read_text(encoding="utf-8"))
     records = NewsJsonlCache(config.cache_dir).load(config.start, config.end)
     theme_matches = match_records_to_themes(records, themes)
-    markdown = render_report(config, themes, theme_matches, records)
+    if config.report_type == "daily_local_news_report":
+        markdown = render_daily_local_news_report(config, records)
+    elif config.report_type == "global_equity_theme_map":
+        markdown = render_global_equity_theme_map(config, themes, theme_matches, records)
+    else:
+        raise ValueError(f"unknown report_type: {config.report_type}")
     config.output_path.parent.mkdir(parents=True, exist_ok=True)
     config.output_path.write_text(markdown, encoding="utf-8")
     return markdown
@@ -68,14 +75,14 @@ def match_records_to_themes(records: list[NewsRecord], themes: dict) -> dict[str
     }
 
 
-def render_report(
+def render_global_equity_theme_map(
     config: IndustryReportConfig,
     themes: dict,
     theme_matches: dict[str, list[tuple[NewsRecord, float]]],
     all_records: list[NewsRecord],
 ) -> str:
     lines = [
-        f"# 출처 기반 글로벌 산업 리포트 - {config.end.isoformat()}",
+        f"# 글로벌 산업 흐름과 전세계 관련 주식 맵 - {config.end.isoformat()}",
         "",
         f"- 분석 기간: {config.start.isoformat()}..{config.end.isoformat()}",
         f"- 캐시에 저장된 증거 수: {len(all_records)}",
@@ -123,6 +130,61 @@ def render_report(
     return "\n".join(lines)
 
 
+def render_daily_local_news_report(config: IndustryReportConfig, records: list[NewsRecord]) -> str:
+    local_records = [
+        record
+        for record in records
+        if record.source in {"naver_news", "google_news_rss"} and _looks_local_record(record)
+    ]
+    by_ticker: dict[str, list[NewsRecord]] = defaultdict(list)
+    for record in local_records:
+        by_ticker[record.ticker].append(record)
+
+    lines = [
+        f"# 국내 뉴스 플로우 리포트 - {config.end.isoformat()}",
+        "",
+        f"- 분석 기간: {config.start.isoformat()}..{config.end.isoformat()}",
+        f"- 국내 뉴스 증거 수: {len(local_records)}",
+        f"- 출처별 커버리지: {_format_counter(Counter(record.source for record in local_records))}",
+        "",
+        "## 종목별 국내 뉴스 플로우",
+        "",
+    ]
+    if not by_ticker:
+        lines.append("캐시에 매칭된 국내 뉴스가 없습니다.")
+        return "\n".join(lines) + "\n"
+
+    for ticker, ticker_records in sorted(by_ticker.items(), key=lambda item: (-len(item[1]), item[0])):
+        source_counter = Counter(record.source for record in ticker_records)
+        lines.extend(
+            [
+                f"### {ticker}",
+                "",
+                f"- 뉴스 수: {len(ticker_records)}",
+                f"- 출처 구성: {_format_counter(source_counter)}",
+                "",
+                "| 시간 | 출처 | 제목 |",
+                "|---|---|---|",
+            ]
+        )
+        for record in sorted(ticker_records, key=lambda item: item.published_at, reverse=True)[: config.max_evidence_per_theme]:
+            title = record.title.replace("|", " ").strip()
+            evidence = f"[{title}]({record.url})" if record.url else title
+            lines.append(f"| {record.published_at:%Y-%m-%d %H:%M} | {_source_label(record.source)} | {evidence} |")
+        lines.append("")
+
+    lines.extend(
+        [
+            "## 데이터 품질 메모",
+            "",
+            "- 이 리포트는 국내 뉴스 플로우를 보기 위한 출력이므로 네이버 뉴스와 한국어 Google 뉴스 RSS를 우선 반영합니다.",
+            "- 글로벌 산업 해석과 전세계 관련 종목은 별도 `global_equity_theme_map` 리포트에서 확인합니다.",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build an industry report from cached news evidence.")
     parser.add_argument("--cache-dir", type=Path, default=Path("cached_news"))
@@ -131,6 +193,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--start", type=_parse_date, required=True)
     parser.add_argument("--end", type=_parse_date, required=True)
     parser.add_argument("--max-evidence", type=int, default=8)
+    parser.add_argument(
+        "--report-type",
+        choices=("daily_local_news_report", "global_equity_theme_map"),
+        default="global_equity_theme_map",
+    )
     return parser.parse_args(argv)
 
 
@@ -144,6 +211,7 @@ def main(argv: list[str] | None = None) -> int:
             start=args.start,
             end=args.end,
             max_evidence_per_theme=args.max_evidence,
+            report_type=args.report_type,
         )
     )
     print(markdown)
@@ -191,6 +259,11 @@ def _is_theme_term(token: str) -> bool:
     return True
 
 
+def _looks_local_record(record: NewsRecord) -> bool:
+    text = f"{record.ticker} {record.title} {record.body}"
+    return any("\uac00" <= char <= "\ud7a3" for char in text)
+
+
 def _format_counter(counter: Counter) -> str:
     if not counter:
         return "none"
@@ -206,6 +279,7 @@ def _source_label(source: str) -> str:
         "newsapi_global": "NewsAPI",
         "gdelt_doc": "GDELT",
         "investing_rss": "Investing.com RSS",
+        "google_news_rss_global": "Google 글로벌 뉴스 RSS",
         "google_news_rss": "Google 뉴스 RSS",
         "naver_news": "네이버 뉴스",
     }

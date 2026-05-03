@@ -26,11 +26,13 @@ class GoogleNewsRssFetcher:
         timeout: int = 10,
         language: str = "ko",
         country: str = "KR",
+        source_name: str = "google_news_rss",
     ) -> None:
         self.session = session or requests
         self.timeout = timeout
         self.language = language
         self.country = country
+        self.source_name = source_name
 
     def fetch(self, tickers: list[str], start: date, end: date, keywords: list[str]) -> list[NewsRecord]:
         records: list[NewsRecord] = []
@@ -55,9 +57,9 @@ class GoogleNewsRssFetcher:
                     title=clean_html(_text(item, "title")),
                     body=clean_html(_text(item, "description")),
                     published_at=published_at,
-                    source="google_news_rss",
+                    source=self.source_name,
                     url=canonical_url(_text(item, "link")),
-                    metadata={"query": query, "provider": "google_news_rss"},
+                    metadata={"query": query, "provider": self.source_name},
                 )
             )
         return records
@@ -78,4 +80,3 @@ class GoogleNewsRssFetcher:
 def _text(element: ET.Element, tag: str) -> str:
     found = element.find(tag)
     return found.text if found is not None and found.text else ""
-

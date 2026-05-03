@@ -69,9 +69,42 @@ class BuildIndustryReportTest(unittest.TestCase):
                 )
             )
 
-            self.assertIn("출처 기반 글로벌 산업 리포트", markdown)
+            self.assertIn("글로벌 산업 흐름과 전세계 관련 주식 맵", markdown)
             self.assertIn("SEC EDGAR", markdown)
             self.assertTrue((root / "report.md").exists())
+
+    def test_build_daily_local_news_report(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            cache = NewsJsonlCache(root / "cache")
+            cache.write_records(
+                [
+                    NewsRecord(
+                        "삼성전자",
+                        "삼성전자 실적 개선",
+                        "국내 뉴스",
+                        datetime(2026, 5, 3),
+                        "naver_news",
+                        "https://example.com/local",
+                    )
+                ]
+            )
+            themes_path = root / "themes.json"
+            themes_path.write_text(json.dumps({}), encoding="utf-8")
+
+            markdown = build_industry_report(
+                IndustryReportConfig(
+                    cache_dir=root / "cache",
+                    themes_path=themes_path,
+                    output_path=root / "local.md",
+                    start=date(2026, 5, 3),
+                    end=date(2026, 5, 3),
+                    report_type="daily_local_news_report",
+                )
+            )
+
+            self.assertIn("국내 뉴스 플로우 리포트", markdown)
+            self.assertIn("삼성전자 실적 개선", markdown)
 
 
 if __name__ == "__main__":

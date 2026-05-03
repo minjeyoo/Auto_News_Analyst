@@ -134,19 +134,32 @@ python3 derive_keywords.py \
 ```bash
 python3 collect_news.py \
   --tickers NVDA TSM MU ASML VRT ETN TSLA TM 삼성전자 SK하이닉스 현대차 기아 NAVER LG에너지솔루션 \
-  --sources google investing gdelt sec naver alpha_vantage finnhub newsapi dart \
+  --sources naver google google_global investing gdelt sec alpha_vantage finnhub newsapi dart \
   --keyword-file derived_keywords.json \
   --keyword-group global \
+  --include-global-queries \
+  --include-company-aliases \
   --days 7
 ```
 
-캐시에 들어온 출처별 증거를 산업 리포트에 반영:
+국내 뉴스 플로우 리포트 생성:
 
 ```bash
 python3 build_industry_report.py \
+  --report-type daily_local_news_report \
   --start 2026-05-03 \
   --end 2026-05-03 \
-  --output reports/2026-05-03_source_aware_industry_report.md
+  --output reports/2026-05-03_daily_local_news_report.md
+```
+
+글로벌 산업 흐름과 전세계 관련 주식 리포트 생성:
+
+```bash
+python3 build_industry_report.py \
+  --report-type global_equity_theme_map \
+  --start 2026-05-03 \
+  --end 2026-05-03 \
+  --output reports/2026-05-03_global_equity_theme_map.md
 ```
 
 글로벌 산업 흐름:
@@ -154,8 +167,10 @@ python3 build_industry_report.py \
 ```bash
 python3 collect_news.py \
   --tickers NVDA TSM MU ASML VRT ETN TSLA TM \
-  --sources google investing gdelt alpha_vantage finnhub newsapi sec \
+  --sources google_global investing gdelt alpha_vantage finnhub newsapi sec \
   --keywords "AI infrastructure" HBM datacenter capex earnings guidance \
+  --include-global-queries \
+  --include-company-aliases \
   --days 7
 ```
 

@@ -43,3 +43,5 @@ Do not modify:
 - Use `docs/data_source_setup.md` when adding or configuring global data sources.
 - Derive next-run keywords from cached reports/news with `derive_keywords.py` before widening collection.
 - `build_industry_report.py`로 출처 기반 산업 증거 리포트를 생성해 GDELT, SEC EDGAR, DART, 유료 API 증거가 캐시에 있을 때 최종 리포트에 반영되게 한다.
+- 기본 뉴스 수집 소스는 `naver + google`이며, 영어권 글로벌 수집은 `google_global`과 `industry_themes.json`의 `global_queries`로 별도 생성한다.
+- 리포트 출력은 국내 뉴스 플로우(`daily_local_news_report`)와 글로벌 산업/주식 맵(`global_equity_theme_map`)으로 분리한다.

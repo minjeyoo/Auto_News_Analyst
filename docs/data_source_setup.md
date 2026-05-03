@@ -162,6 +162,16 @@ python3 build_industry_report.py \
   --output reports/2026-05-03_global_equity_theme_map.md
 ```
 
+산업 구조, 국제정세, 매크로, 밸류체인까지 포함한 전략 분석 리포트 생성:
+
+```bash
+python3 generate_strategic_analysis.py \
+  --local-report reports/2026-05-03_daily_local_news_report.md \
+  --global-report reports/2026-05-03_global_equity_theme_map.md \
+  --output reports/2026-05-03_strategic_multi_axis_report.md \
+  --report-date 2026-05-03
+```
+
 글로벌 산업 흐름:
 
 ```bash

@@ -45,3 +45,4 @@ Do not modify:
 - `build_industry_report.py`로 출처 기반 산업 증거 리포트를 생성해 GDELT, SEC EDGAR, DART, 유료 API 증거가 캐시에 있을 때 최종 리포트에 반영되게 한다.
 - 기본 뉴스 수집 소스는 `naver + google`이며, 영어권 글로벌 수집은 `google_global`과 `industry_themes.json`의 `global_queries`로 별도 생성한다.
 - 리포트 출력은 국내 뉴스 플로우(`daily_local_news_report`)와 글로벌 산업/주식 맵(`global_equity_theme_map`)으로 분리한다.
+- 최종 인사이트는 `generate_strategic_analysis.py`로 생성하며, 단순 뉴스 모음이 아니라 산업 구조, 국제정세, 매크로, 밸류체인, 반대 논리, 다음 수집 키워드를 포함해야 한다.

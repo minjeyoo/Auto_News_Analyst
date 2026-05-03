@@ -25,6 +25,7 @@ SOURCE_WEIGHTS = {
     "finnhub_news": 1.25,
     "newsapi_global": 1.15,
     "gdelt_doc": 1.1,
+    "investing_rss": 1.05,
     "google_news_rss": 1.0,
     "naver_news": 0.9,
 }
@@ -74,13 +75,13 @@ def render_report(
     all_records: list[NewsRecord],
 ) -> str:
     lines = [
-        f"# Source-Aware Global Industry Report - {config.end.isoformat()}",
+        f"# 출처 기반 글로벌 산업 리포트 - {config.end.isoformat()}",
         "",
-        f"- Window: {config.start.isoformat()}..{config.end.isoformat()}",
-        f"- Cached evidence records: {len(all_records)}",
-        f"- Source coverage: {_format_counter(Counter(record.source for record in all_records))}",
+        f"- 분석 기간: {config.start.isoformat()}..{config.end.isoformat()}",
+        f"- 캐시에 저장된 증거 수: {len(all_records)}",
+        f"- 출처별 커버리지: {_format_counter(Counter(record.source for record in all_records))}",
         "",
-        "## Theme Signals",
+        "## 산업 테마별 신호",
         "",
     ]
     for theme_name, theme in themes.items():
@@ -90,31 +91,32 @@ def render_report(
             [
                 f"### {theme_name}",
                 "",
-                f"- Description: {theme.get('description', '')}",
-                f"- Matched evidence: {len(theme_matches.get(theme_name, []))}",
-                f"- Source mix: {_format_counter(source_counter)}",
-                f"- Global stocks: {', '.join(theme.get('global_stocks', [])[:12])}",
-                f"- Korea stocks: {', '.join(theme.get('korea_stocks', [])[:8])}",
+                f"- 설명: {theme.get('description', '')}",
+                f"- 매칭된 증거 수: {len(theme_matches.get(theme_name, []))}",
+                f"- 출처 구성: {_format_counter(source_counter)}",
+                f"- 글로벌 추적 종목: {', '.join(theme.get('global_stocks', [])[:12])}",
+                f"- 한국 추적 종목: {', '.join(theme.get('korea_stocks', [])[:8])}",
                 "",
-                "| Source | Ticker | Evidence |",
+                "| 출처 | 종목/검색어 | 증거 |",
                 "|---|---|---|",
             ]
         )
         if not evidence:
-            lines.append("| - | - | No matched evidence in cache. |")
+            lines.append("| - | - | 캐시에서 매칭된 증거가 없습니다. |")
         for record, score in evidence:
             title = record.title.replace("|", " ").strip()
             url = record.url.strip()
             evidence_text = f"[{title}]({url})" if url else title
-            lines.append(f"| {record.source} | {record.ticker} | {evidence_text} |")
+            lines.append(f"| {_source_label(record.source)} | {record.ticker} | {evidence_text} |")
         lines.append("")
     lines.extend(
         [
-            "## Data Quality Notes",
+            "## 데이터 품질 메모",
             "",
-            "- SEC EDGAR and DART are treated as high-weight filing evidence when present.",
-            "- GDELT is included as global breadth evidence, but public API rate limits can reduce daily coverage.",
-            "- Keyword derivation should be run before collection when the goal is to discover new themes rather than confirm a fixed thesis.",
+            "- SEC EDGAR와 DART는 공시 증거이므로 존재할 때 높은 가중치로 반영합니다.",
+            "- GDELT는 글로벌 뉴스 폭을 넓히는 용도지만, 공개 API 제한으로 일별 커버리지가 줄어들 수 있습니다.",
+            "- Investing.com은 공식 RSS 피드만 사용하며, 웹페이지 스크래핑은 사용하지 않습니다.",
+            "- 새로운 테마를 발견하려는 목적이라면 수집 전에 `derive_keywords.py`로 검색어를 먼저 파생해야 합니다.",
             "",
         ]
     )
@@ -192,7 +194,22 @@ def _is_theme_term(token: str) -> bool:
 def _format_counter(counter: Counter) -> str:
     if not counter:
         return "none"
-    return ", ".join(f"{key}={value}" for key, value in counter.most_common())
+    return ", ".join(f"{_source_label(str(key))}={value}" for key, value in counter.most_common())
+
+
+def _source_label(source: str) -> str:
+    labels = {
+        "sec_edgar": "SEC EDGAR",
+        "dart_disclosure": "DART 공시",
+        "alpha_vantage_news": "Alpha Vantage",
+        "finnhub_news": "Finnhub",
+        "newsapi_global": "NewsAPI",
+        "gdelt_doc": "GDELT",
+        "investing_rss": "Investing.com RSS",
+        "google_news_rss": "Google 뉴스 RSS",
+        "naver_news": "네이버 뉴스",
+    }
+    return labels.get(source, source)
 
 
 def _parse_date(value: str) -> date:

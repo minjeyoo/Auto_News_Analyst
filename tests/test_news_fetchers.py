@@ -7,6 +7,7 @@ from news_fetchers.dart_disclosures import DartDisclosureFetcher
 from news_fetchers.finnhub_news import FinnhubNewsFetcher
 from news_fetchers.gdelt_news import GdeltNewsFetcher
 from news_fetchers.google_news_rss import GoogleNewsRssFetcher
+from news_fetchers.investing_rss import InvestingRssFetcher
 from news_fetchers.naver_news import NaverNewsFetcher
 from news_fetchers.newsapi_global import NewsApiGlobalFetcher
 from news_fetchers.sec_edgar import SecEdgarFetcher
@@ -129,6 +130,27 @@ class GdeltNewsFetcherTest(unittest.TestCase):
         self.assertEqual(records[0].source, "gdelt_doc")
         self.assertEqual(records[0].url, "https://example.com/a")
         self.assertEqual(session.calls[0][1]["params"]["format"], "json")
+
+
+class InvestingRssFetcherTest(unittest.TestCase):
+    def test_fetch_parses_official_investing_rss(self):
+        xml = """<?xml version="1.0" encoding="UTF-8"?>
+        <rss><channel>
+          <item>
+            <title>Nvidia shares rise as AI capex expands</title>
+            <link>https://www.investing.com/news/stock-market-news/example</link>
+            <description>NVDA demand remains strong</description>
+            <pubDate>2026-04-20 00:00:00</pubDate>
+          </item>
+        </channel></rss>
+        """
+        fetcher = InvestingRssFetcher(session=FakeSession(FakeResponse(text=xml)), feeds=("https://example.com/rss",))
+
+        records = fetcher.fetch(["NVDA"], date(2026, 4, 1), date(2026, 4, 30), ["AI"])
+
+        self.assertEqual(len(records), 1)
+        self.assertEqual(records[0].source, "investing_rss")
+        self.assertEqual(records[0].ticker, "NVDA")
 
 
 class SecEdgarFetcherTest(unittest.TestCase):

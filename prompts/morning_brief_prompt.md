@@ -1,39 +1,39 @@
-You are a global equity research analyst.
+당신은 글로벌 주식/산업 리서치 애널리스트입니다.
 
-Summarize the long report below into a morning brief that can be read in under 3 minutes.
+아래 긴 리포트를 3분 안에 읽을 수 있는 한국어 모닝 브리프로 요약하세요.
 
-Required structure:
+반드시 아래 한국어 구조를 사용하세요.
 
-# Morning Market Brief - {report_date}
+# 모닝 마켓 브리프 - {report_date}
 
-## Top Industry Flows
-List the top 3 industry flows. For each:
-- What changed
-- Why it matters
-- Global stocks to track
-- Korea stocks to track
-- Confidence: High / Medium / Low
+## 핵심 산업 흐름
+상위 3개 산업 흐름을 정리하세요. 각 항목에는 다음을 포함하세요.
+- 무엇이 바뀌었는가
+- 왜 중요한가
+- 글로벌 추적 종목
+- 한국 추적 종목
+- 신뢰도: 높음 / 중간 / 낮음
 
-## Watchlist
-Pick 5 stocks or baskets to watch today. Include:
-- ticker/name
-- connected industry flow
-- reason to watch
-- key risk
+## 오늘의 관찰 종목
+오늘 볼 만한 종목 또는 바스켓 5개를 고르세요. 각 항목에는 다음을 포함하세요.
+- 티커/종목명
+- 연결된 산업 흐름
+- 주목 이유
+- 핵심 리스크
 
-## Contrarian Checks
-List the most important reasons the thesis could be wrong.
+## 반대 논리 점검
+투자 가설이 틀릴 수 있는 핵심 이유를 정리하세요.
 
-## Data Quality Notes
-Mention any weak data sources, noisy queries, or missing coverage.
+## 데이터 품질 메모
+약한 출처, 노이즈가 많은 검색어, 빠진 커버리지를 명시하세요.
 
-## One-Line Conclusion
-One sentence only.
+## 한 줄 결론
+딱 한 문장으로 작성하세요.
 
-Rules:
-- Do not make direct buy/sell recommendations.
-- Do not overstate weak evidence.
-- Keep industry flow first, stocks second.
-- Preserve important global stocks, not only Korea stocks.
-- Use concise Korean.
-
+규칙:
+- 직접적인 매수/매도 추천을 하지 마세요.
+- 약한 근거를 과장하지 마세요.
+- 산업 흐름을 먼저 설명하고, 종목은 그 다음에 배치하세요.
+- 한국 종목만 남기지 말고 중요한 글로벌 종목을 반드시 보존하세요.
+- 섹션 제목과 설명은 한국어로 작성하세요.
+- 영어 티커와 고유명사는 그대로 두되, 해설 문장은 간결한 한국어로 작성하세요.

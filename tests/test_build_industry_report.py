@@ -69,8 +69,8 @@ class BuildIndustryReportTest(unittest.TestCase):
                 )
             )
 
-            self.assertIn("Source-Aware Global Industry Report", markdown)
-            self.assertIn("sec_edgar", markdown)
+            self.assertIn("출처 기반 글로벌 산업 리포트", markdown)
+            self.assertIn("SEC EDGAR", markdown)
             self.assertTrue((root / "report.md").exists())
 
 

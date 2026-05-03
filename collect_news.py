@@ -19,6 +19,7 @@ try:
         FinnhubNewsFetcher,
         GdeltNewsFetcher,
         GoogleNewsRssFetcher,
+        InvestingRssFetcher,
         NaverNewsFetcher,
         NewsApiGlobalFetcher,
         SecEdgarFetcher,
@@ -33,13 +34,24 @@ except ImportError:  # Allows `python3 collect_news.py` from project root.
         FinnhubNewsFetcher,
         GdeltNewsFetcher,
         GoogleNewsRssFetcher,
+        InvestingRssFetcher,
         NaverNewsFetcher,
         NewsApiGlobalFetcher,
         SecEdgarFetcher,
     )
 
 
-SUPPORTED_SOURCES = ("naver", "google", "gdelt", "sec", "alpha_vantage", "finnhub", "newsapi", "dart")
+SUPPORTED_SOURCES = (
+    "naver",
+    "google",
+    "investing",
+    "gdelt",
+    "sec",
+    "alpha_vantage",
+    "finnhub",
+    "newsapi",
+    "dart",
+)
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -79,6 +91,8 @@ def build_fetcher(sources: list[str]) -> AggregatingNewsFetcher:
         fetchers.append(NaverNewsFetcher())
     if "google" in sources:
         fetchers.append(GoogleNewsRssFetcher())
+    if "investing" in sources:
+        fetchers.append(InvestingRssFetcher())
     if "gdelt" in sources:
         fetchers.append(GdeltNewsFetcher())
     if "sec" in sources:

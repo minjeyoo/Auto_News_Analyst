@@ -1,6 +1,6 @@
 {
   "ai_infrastructure_memory": {
-    "description": "AI infrastructure buildout, HBM, DRAM, advanced packaging, and semiconductor equipment.",
+    "description": "AI 인프라 투자 확대, HBM, DRAM, 첨단 패키징, 반도체 장비를 포함한 메모리/인프라 밸류체인.",
     "global_queries": [
       "AI infrastructure capex HBM DRAM memory shortage",
       "hyperscaler capex AI data center memory prices",
@@ -25,7 +25,7 @@
     ]
   },
   "data_center_power_cooling": {
-    "description": "Power, cooling, grid, UPS, liquid cooling, and data center infrastructure bottlenecks.",
+    "description": "AI 데이터센터 확대로 발생하는 전력, 냉각, 전력망, UPS, 액체냉각, 변압기 병목.",
     "global_queries": [
       "AI data center power cooling liquid cooling stocks",
       "data center transformer grid interconnection AI infrastructure",
@@ -52,7 +52,7 @@
     ]
   },
   "hybrid_ev_battery_ess": {
-    "description": "Hybrid vehicle strength, EV demand, battery cells, lithium, materials, and ESS.",
+    "description": "하이브리드 차량 강세, 순수 EV 수요 둔화, 배터리 셀, 리튬/소재, ESS 수요 변화.",
     "global_queries": [
       "hybrid sales growth EV slowdown 2026 Hyundai Toyota",
       "global EV battery market share CATL BYD LG Energy Solution Samsung SDI",
@@ -81,7 +81,7 @@
     ]
   },
   "platform_ai_commerce": {
-    "description": "AI monetization in advertising, commerce, payments, cloud, and marketplace platforms.",
+    "description": "광고, 커머스, 결제, 클라우드, 마켓플레이스 플랫폼에서의 AI 수익화.",
     "global_queries": [
       "AI advertising commerce cloud monetization Alphabet Meta Amazon",
       "Naver AI commerce Npay earnings cloud",
@@ -103,4 +103,3 @@
     ]
   }
 }
-

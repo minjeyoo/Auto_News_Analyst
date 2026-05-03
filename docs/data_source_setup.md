@@ -1,4 +1,4 @@
-# Data Source Setup
+# 데이터 소스 설정
 
 이 프로젝트의 목표는 국내 뉴스가 아니라 글로벌 산업 흐름, 공시, 매크로, 종목 뉴스를 함께 보는 것입니다.
 
@@ -36,6 +36,25 @@ python3 collect_news.py --tickers NVDA AAPL MSFT --sources sec --keywords --days
 ```bash
 python3 collect_news.py --tickers NVDA AAPL MSFT --sources sec --keywords 10-Q 8-K 10-K --days 30
 ```
+
+### Investing.com RSS
+
+- 목적: 글로벌 주식시장 뉴스, 경제 뉴스, 분석 RSS 보강
+- API 키: 필요 없음
+- 프로젝트 소스명: `investing`
+- 방식: Investing.com이 공개한 RSS 피드만 사용합니다. 웹페이지 스크래핑은 사용하지 않습니다.
+- 예시:
+
+```bash
+python3 collect_news.py --tickers NVDA TSLA AAPL MSFT --sources investing --keywords AI earnings capex --days 7
+```
+
+### Bloomberg
+
+- 목적: 기관급 뉴스와 데이터
+- 무료 자동수집: 권장하지 않음
+- 이유: Bloomberg 웹사이트 약관은 사전 서면 동의 없는 scraper, robot, bot, data mining 방식 접근을 금지합니다. Bloomberg News/API는 Bloomberg Professional, Terminal, Data License, B-PIPE 같은 유료/계약형 접근이 기본입니다.
+- 현실적 대안: Bloomberg 원문을 직접 긁지 말고, Google News RSS, GDELT, Investing.com RSS, SEC/DART, Alpha Vantage, Finnhub, NewsAPI에서 Bloomberg가 인용되거나 같은 이벤트를 보도한 자료를 포착합니다.
 
 ## API 키 발급 필요
 
@@ -115,7 +134,7 @@ python3 derive_keywords.py \
 ```bash
 python3 collect_news.py \
   --tickers NVDA TSM MU ASML VRT ETN TSLA TM 삼성전자 SK하이닉스 현대차 기아 NAVER LG에너지솔루션 \
-  --sources google gdelt sec naver alpha_vantage finnhub newsapi dart \
+  --sources google investing gdelt sec naver alpha_vantage finnhub newsapi dart \
   --keyword-file derived_keywords.json \
   --keyword-group global \
   --days 7
@@ -135,7 +154,7 @@ python3 build_industry_report.py \
 ```bash
 python3 collect_news.py \
   --tickers NVDA TSM MU ASML VRT ETN TSLA TM \
-  --sources google gdelt alpha_vantage finnhub newsapi sec \
+  --sources google investing gdelt alpha_vantage finnhub newsapi sec \
   --keywords "AI infrastructure" HBM datacenter capex earnings guidance \
   --days 7
 ```
@@ -154,4 +173,4 @@ python3 collect_news.py \
 
 - `.env`는 Git에 올리면 안 됩니다.
 - API 키가 없는 소스는 빈 결과를 반환하도록 되어 있습니다.
-- 뉴스는 중복과 노이즈가 많으므로 `Data Quality Notes`에 출처 편향을 반드시 남겨야 합니다.
+- 뉴스는 중복과 노이즈가 많으므로 `데이터 품질 메모`에 출처 편향을 반드시 남겨야 합니다.

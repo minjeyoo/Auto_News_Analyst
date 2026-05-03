@@ -42,4 +42,4 @@ Do not modify:
 - Avoid one-sided bullish or bearish output.
 - Use `docs/data_source_setup.md` when adding or configuring global data sources.
 - Derive next-run keywords from cached reports/news with `derive_keywords.py` before widening collection.
-- Build source-aware industry evidence reports with `build_industry_report.py` so GDELT, SEC EDGAR, DART, and paid APIs affect the final report when present in cache.
+- `build_industry_report.py`로 출처 기반 산업 증거 리포트를 생성해 GDELT, SEC EDGAR, DART, 유료 API 증거가 캐시에 있을 때 최종 리포트에 반영되게 한다.

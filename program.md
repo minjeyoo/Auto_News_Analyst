@@ -41,3 +41,5 @@ Do not modify:
 - Calibrate confidence by evidence count and source diversity.
 - Avoid one-sided bullish or bearish output.
 - Use `docs/data_source_setup.md` when adding or configuring global data sources.
+- Derive next-run keywords from cached reports/news with `derive_keywords.py` before widening collection.
+- Build source-aware industry evidence reports with `build_industry_report.py` so GDELT, SEC EDGAR, DART, and paid APIs affect the final report when present in cache.

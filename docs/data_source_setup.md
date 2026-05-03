@@ -101,6 +101,35 @@ BOK_ECOS_API_KEY=...
 
 ## 추천 실행 조합
 
+리포트/기사에서 다음 검색어를 먼저 추출:
+
+```bash
+python3 derive_keywords.py \
+  --start 2026-05-03 \
+  --end 2026-05-03 \
+  --output derived_keywords.json
+```
+
+추출된 키워드로 다시 수집:
+
+```bash
+python3 collect_news.py \
+  --tickers NVDA TSM MU ASML VRT ETN TSLA TM 삼성전자 SK하이닉스 현대차 기아 NAVER LG에너지솔루션 \
+  --sources google gdelt sec naver alpha_vantage finnhub newsapi dart \
+  --keyword-file derived_keywords.json \
+  --keyword-group global \
+  --days 7
+```
+
+캐시에 들어온 출처별 증거를 산업 리포트에 반영:
+
+```bash
+python3 build_industry_report.py \
+  --start 2026-05-03 \
+  --end 2026-05-03 \
+  --output reports/2026-05-03_source_aware_industry_report.md
+```
+
 글로벌 산업 흐름:
 
 ```bash

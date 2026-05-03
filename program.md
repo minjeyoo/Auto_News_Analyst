@@ -40,3 +40,4 @@ Do not modify:
 - Penalize stale repeated syndicated articles.
 - Calibrate confidence by evidence count and source diversity.
 - Avoid one-sided bullish or bearish output.
+- Use `docs/data_source_setup.md` when adding or configuring global data sources.

@@ -10,10 +10,10 @@ from domain_types import NewsRecord
 
 class CollectNewsCliTest(unittest.TestCase):
     def test_parse_args_requires_tickers_and_accepts_sources(self):
-        args = parse_args(["--tickers", "삼성전자", "AAPL", "--sources", "naver"])
+        args = parse_args(["--tickers", "삼성전자", "AAPL", "--sources", "naver", "gdelt", "sec"])
 
         self.assertEqual(args.tickers, ["삼성전자", "AAPL"])
-        self.assertEqual(args.sources, ["naver"])
+        self.assertEqual(args.sources, ["naver", "gdelt", "sec"])
 
     def test_resolve_window_uses_days_when_start_is_omitted(self):
         args = parse_args(["--tickers", "AAPL", "--days", "3"])
@@ -57,4 +57,3 @@ class SummarizeTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

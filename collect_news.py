@@ -12,14 +12,34 @@ from dotenv import load_dotenv
 try:
     from .domain_types import NewsRecord
     from .news_cache import NewsJsonlCache
-    from .news_fetchers import AggregatingNewsFetcher, GoogleNewsRssFetcher, NaverNewsFetcher
+    from .news_fetchers import (
+        AggregatingNewsFetcher,
+        AlphaVantageNewsFetcher,
+        DartDisclosureFetcher,
+        FinnhubNewsFetcher,
+        GdeltNewsFetcher,
+        GoogleNewsRssFetcher,
+        NaverNewsFetcher,
+        NewsApiGlobalFetcher,
+        SecEdgarFetcher,
+    )
 except ImportError:  # Allows `python3 collect_news.py` from project root.
     from domain_types import NewsRecord
     from news_cache import NewsJsonlCache
-    from news_fetchers import AggregatingNewsFetcher, GoogleNewsRssFetcher, NaverNewsFetcher
+    from news_fetchers import (
+        AggregatingNewsFetcher,
+        AlphaVantageNewsFetcher,
+        DartDisclosureFetcher,
+        FinnhubNewsFetcher,
+        GdeltNewsFetcher,
+        GoogleNewsRssFetcher,
+        NaverNewsFetcher,
+        NewsApiGlobalFetcher,
+        SecEdgarFetcher,
+    )
 
 
-SUPPORTED_SOURCES = ("naver", "google")
+SUPPORTED_SOURCES = ("naver", "google", "gdelt", "sec", "alpha_vantage", "finnhub", "newsapi", "dart")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -59,6 +79,18 @@ def build_fetcher(sources: list[str]) -> AggregatingNewsFetcher:
         fetchers.append(NaverNewsFetcher())
     if "google" in sources:
         fetchers.append(GoogleNewsRssFetcher())
+    if "gdelt" in sources:
+        fetchers.append(GdeltNewsFetcher())
+    if "sec" in sources:
+        fetchers.append(SecEdgarFetcher())
+    if "alpha_vantage" in sources:
+        fetchers.append(AlphaVantageNewsFetcher())
+    if "finnhub" in sources:
+        fetchers.append(FinnhubNewsFetcher())
+    if "newsapi" in sources:
+        fetchers.append(NewsApiGlobalFetcher())
+    if "dart" in sources:
+        fetchers.append(DartDisclosureFetcher())
     return AggregatingNewsFetcher(fetchers)
 
 
@@ -138,4 +170,3 @@ def _parse_date(value: str) -> date:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

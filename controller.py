@@ -34,6 +34,8 @@ class AutoResearchConfig:
         Path("candidate_pipeline.py"),
         Path("prompts/candidate_prompt.md"),
         Path("news_keywords.json"),
+        Path("industry_themes.json"),
+        Path("company_aliases.json"),
     )
     immutable_paths: tuple[Path, ...] = (
         Path("eval_harness.py"),

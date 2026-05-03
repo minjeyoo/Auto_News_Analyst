@@ -1,0 +1,106 @@
+{
+  "ai_infrastructure_memory": {
+    "description": "AI infrastructure buildout, HBM, DRAM, advanced packaging, and semiconductor equipment.",
+    "global_queries": [
+      "AI infrastructure capex HBM DRAM memory shortage",
+      "hyperscaler capex AI data center memory prices",
+      "HBM supply SK hynix Samsung Micron Nvidia"
+    ],
+    "global_stocks": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "MRVL",
+      "TSM",
+      "ASML",
+      "AMAT",
+      "LRCX",
+      "MU",
+      "005930.KS",
+      "000660.KS"
+    ],
+    "korea_stocks": [
+      "SK하이닉스",
+      "삼성전자"
+    ]
+  },
+  "data_center_power_cooling": {
+    "description": "Power, cooling, grid, UPS, liquid cooling, and data center infrastructure bottlenecks.",
+    "global_queries": [
+      "AI data center power cooling liquid cooling stocks",
+      "data center transformer grid interconnection AI infrastructure",
+      "UPS power management data center cooling AI demand"
+    ],
+    "global_stocks": [
+      "VRT",
+      "ETN",
+      "SU.PA",
+      "SBGSY",
+      "ABB",
+      "MOD",
+      "NVT",
+      "EQIX",
+      "DLR",
+      "CEG"
+    ],
+    "korea_stocks": [
+      "HD현대일렉트릭",
+      "LS ELECTRIC",
+      "효성중공업",
+      "LS",
+      "대한전선"
+    ]
+  },
+  "hybrid_ev_battery_ess": {
+    "description": "Hybrid vehicle strength, EV demand, battery cells, lithium, materials, and ESS.",
+    "global_queries": [
+      "hybrid sales growth EV slowdown 2026 Hyundai Toyota",
+      "global EV battery market share CATL BYD LG Energy Solution Samsung SDI",
+      "battery storage lithium demand growth ESS 2026"
+    ],
+    "global_stocks": [
+      "TM",
+      "TSLA",
+      "1211.HK",
+      "BYDDY",
+      "300750.SZ",
+      "373220.KS",
+      "006400.KS",
+      "6752.T",
+      "ALB",
+      "SQM",
+      "FLNC"
+    ],
+    "korea_stocks": [
+      "현대차",
+      "기아",
+      "LG에너지솔루션",
+      "삼성SDI",
+      "POSCO홀딩스",
+      "포스코퓨처엠"
+    ]
+  },
+  "platform_ai_commerce": {
+    "description": "AI monetization in advertising, commerce, payments, cloud, and marketplace platforms.",
+    "global_queries": [
+      "AI advertising commerce cloud monetization Alphabet Meta Amazon",
+      "Naver AI commerce Npay earnings cloud",
+      "platform AI monetization ecommerce payments 2026"
+    ],
+    "global_stocks": [
+      "GOOGL",
+      "META",
+      "AMZN",
+      "MELI",
+      "SE",
+      "SHOP",
+      "035420.KS",
+      "035720.KS"
+    ],
+    "korea_stocks": [
+      "NAVER",
+      "카카오"
+    ]
+  }
+}
+

@@ -1,0 +1,55 @@
+{
+  "삼성전자": {
+    "tickers": ["005930.KS"],
+    "aliases": ["삼성전자", "Samsung Electronics", "Samsung memory", "Samsung HBM", "Samsung DRAM"]
+  },
+  "SK하이닉스": {
+    "tickers": ["000660.KS"],
+    "aliases": ["SK하이닉스", "SK hynix", "SK Hynix HBM", "SK Hynix DRAM"]
+  },
+  "Micron": {
+    "tickers": ["MU"],
+    "aliases": ["Micron", "Micron Technology", "Micron HBM", "Micron DRAM"]
+  },
+  "Nvidia": {
+    "tickers": ["NVDA"],
+    "aliases": ["Nvidia", "NVIDIA AI accelerator", "Nvidia GPU", "Nvidia Blackwell"]
+  },
+  "Broadcom": {
+    "tickers": ["AVGO"],
+    "aliases": ["Broadcom", "Broadcom AI ASIC", "Broadcom networking"]
+  },
+  "Vertiv": {
+    "tickers": ["VRT"],
+    "aliases": ["Vertiv", "Vertiv data center cooling", "Vertiv power"]
+  },
+  "Eaton": {
+    "tickers": ["ETN"],
+    "aliases": ["Eaton", "Eaton data center", "Eaton electrical equipment"]
+  },
+  "NAVER": {
+    "tickers": ["035420.KS"],
+    "aliases": ["네이버 실적", "NAVER earnings", "NAVER commerce", "Npay", "네이버 클라우드", "NAVER AI"]
+  },
+  "현대차": {
+    "tickers": ["005380.KS", "HYMTF"],
+    "aliases": ["현대차", "Hyundai Motor", "Hyundai hybrid", "Hyundai EV"]
+  },
+  "Toyota": {
+    "tickers": ["TM"],
+    "aliases": ["Toyota", "Toyota hybrid", "Toyota electric vehicle"]
+  },
+  "BYD": {
+    "tickers": ["1211.HK", "BYDDY"],
+    "aliases": ["BYD", "BYD battery", "BYD EV"]
+  },
+  "CATL": {
+    "tickers": ["300750.SZ"],
+    "aliases": ["CATL", "Contemporary Amperex", "CATL battery"]
+  },
+  "LG에너지솔루션": {
+    "tickers": ["373220.KS"],
+    "aliases": ["LG에너지솔루션", "LG Energy Solution", "LGES battery", "LGES ESS"]
+  }
+}
+

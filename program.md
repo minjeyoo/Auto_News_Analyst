@@ -10,6 +10,8 @@ You may modify only:
 - `candidate_pipeline.py`
 - `prompts/candidate_prompt.md`
 - `news_keywords.json`
+- `industry_themes.json`
+- `company_aliases.json`
 - `COMBAT_LOG.md`
 - `RESEARCH_LOG.md`
 

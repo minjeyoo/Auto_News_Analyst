@@ -16,6 +16,7 @@ You may modify only:
 Do not modify:
 - `eval_harness.py`
 - `controller.py`
+- `news_fetchers/`
 - `prepare_data.py`
 - `price_provider.py`
 - `tests/`
@@ -36,4 +37,3 @@ Do not modify:
 - Penalize stale repeated syndicated articles.
 - Calibrate confidence by evidence count and source diversity.
 - Avoid one-sided bullish or bearish output.
-

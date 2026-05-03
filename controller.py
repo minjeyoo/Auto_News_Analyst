@@ -37,6 +37,7 @@ class AutoResearchConfig:
     )
     immutable_paths: tuple[Path, ...] = (
         Path("eval_harness.py"),
+        Path("news_fetchers"),
         Path("prepare_data.py"),
         Path("price_provider.py"),
         Path("tests"),

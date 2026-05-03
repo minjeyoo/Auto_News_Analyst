@@ -16,6 +16,7 @@ You may modify only:
 Do not modify:
 - `eval_harness.py`
 - `controller.py`
+- `news_cache.py`
 - `news_fetchers/`
 - `prepare_data.py`
 - `price_provider.py`
